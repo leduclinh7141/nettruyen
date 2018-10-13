@@ -79,7 +79,7 @@ async function main() {
 
   if (!CHAPTER_LIST_URL) {
     let genres = await listGenres();
-
+    let selectedComic;
 
     genres.unshift({
       title: 'Tìm theo tên',
@@ -130,7 +130,7 @@ async function main() {
           }
       ];
 
-      let selectedComic = await inquirer.prompt(questions);
+      selectedComic = await inquirer.prompt(questions);
     }
 
     let comicTitle = selectedComic.comic.split(' | ')[0];
