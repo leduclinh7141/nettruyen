@@ -29,7 +29,7 @@ if (global.isCli) {
 
 function download(url, path) {
   return new Promise((r, _) => {
-    console.log(path);
+    console.log(url);
     request(url).pipe(fs.createWriteStream(path)).on('finish', function() {
       r(true);
     });
@@ -48,6 +48,7 @@ async function downloadFirst(folder, arr) {
     return;
   }
   let item = arr.shift();
+  // let filePath = path.join(folder, `${folder.substr(folder.length - 4)}${pad(item.page, 4)}.png`);
   let filePath = path.join(folder, `${pad(item.page, 4)}.png`);
   await download(item.url, filePath).then(_ => downloadFirst(folder, arr));
 }
